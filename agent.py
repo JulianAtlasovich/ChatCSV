@@ -4,9 +4,12 @@
 from langchain_experimental.agents import create_pandas_dataframe_agent
 import pandas as pd
 from langchain_community.chat_models import ChatOpenAI
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
 
-API_KEY = "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"
+API_KEY = os.getenv("OPENAI_API_KEY")
 
 def create_agent(df):
      """

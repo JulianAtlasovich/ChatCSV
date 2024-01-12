@@ -1,8 +1,9 @@
 import streamlit as st
 import pandas as pd
 import json
-
 from agent import query_agent, create_agent
+import os
+
 
 
 def decode_response(response: str) -> dict:
@@ -60,8 +61,7 @@ query = st.text_input(" ")
 df = pd.read_csv('Sales_example.csv')
 
 if st.button("Submit", type = "primary"):
-    with st.spinner('Generating response...'):
-        
+    with st.spinner('Generating response...'):        
         agent = create_agent(df)
         response = query_agent(agent = agent, query = query)
         decoded_response = json.loads(response)
