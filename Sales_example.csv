@@ -1,0 +1,25 @@
+﻿Order Id,Customer Name,Location,Month,Invoiced Amount,Quantity,Ship Date
+1,Apple Inc.,East,Apr,22128,1078,1/12/2024
+2,Apple Inc.,East,Aug,5769,1400,1/13/2024
+3,Apple Inc.,East,Dec,47413,2455,1/14/2024
+4,Apple Inc.,West,Apr,18393,27741,1/12/2024
+5,Apple Inc.,East,Apr,54053,2666,1/12/2024
+6,Apple Inc.,East,Apr,45916,2307,1/1/2024
+7,Apple Inc.,East,May,56738,2028,2/12/2024
+8,Apple Inc.,East,Oct,3060,1763,1/10/2024
+9,Apple Inc.,East,Sep,13530,2851,1/12/2024
+10,Meta,East,Apr,53833,7071,1/12/2024
+11,Meta,East,Aug,46585,191,1/12/2024
+12,Meta,East,Dec,82046,120,1/12/2024
+13,Meta,East,May,3156,7374,1/12/2024
+14,Meta,West,Nov,51737,52,1/1/2024
+15,Microsoft Corp,West,Apr,72237,3596,1/12/2024
+16,Microsoft Corp,West,Dec,51330,19252,1/3/2024
+17,Microsoft Corp,East,Apr,44158,2318,1/5/2024
+18,Microsoft Corp,East,Jan,40436,8867,1/7/2024
+19,Microsoft Corp,East,Apr,17481,5859,1/12/2024
+20,Microsoft Corp,East,Nov,27293,3482,1/12/2024
+21,Microsoft Corp,East,Oct,22980,1493,1/5/2024
+22,Nvidia Corp,East,Jan,18143,1367,1/15/2024
+23,Nvidia Corp,East,Apr,17238,375,1/12/2024
+24,Nvidia Corp,East,Nov,5499,797,1/14/2024

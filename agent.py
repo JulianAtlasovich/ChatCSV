@@ -1,24 +1,14 @@
 # Setting Agent
 
-from langchain import OpenAI
-from langchain.agents import create_pandas_dataframe_agent
+#from langchain.llms import OpenAI
+from langchain_experimental.agents import create_pandas_dataframe_agent
 import pandas as pd
+from langchain_community.chat_models import ChatOpenAI
 
 
-#Importing api key
+API_KEY = "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"
 
-import environ
-
-env = environ.Env()
-environ.Env.read_env()
-
-API_KEY = env("apikey")
-
-
-
-# Creating agent
-
-def create_agent(filename :str):
+def create_agent(df):
      """
     Create an agent that can access and use a large language model (LLM).
 
@@ -31,13 +21,11 @@ def create_agent(filename :str):
      
 
      # Creating an openai object
-     llmodel = OpenAI(openai_api_key=API_KEY)
+     #llmodel = OpenAI(openai_api_key=API_KEY,model_name=)
 
      # Reading the csv file uploaded by USER
-     df = pd.read_csv(filename)
-
-     return create_pandas_dataframe_agent(llmodel, df, verbose = False)
-
+     
+     return create_pandas_dataframe_agent(ChatOpenAI(openai_api_key=API_KEY,temperature=0, model="gpt-4-1106-preview"), df, verbose = False)#model_name
 
 # Query Agent
 
@@ -55,6 +43,8 @@ def query_agent(agent, query):
 
     prompt = (
         """
+            Do not include markdown indicators such as "```json```" in your answer, just the json directly
+
             For the following query, if it requires drawing a table, reply as follows:
             {"table": {"columns": ["column1", "column2", ...], "data": [[value1, value2, ...], [value1, value2, ...], ...]}}
 
@@ -89,7 +79,11 @@ def query_agent(agent, query):
     )
 
     # Run the prompt through the agent.
-    response = agent.run(prompt)
-
-    # Convert the response to a string.
-    return response.__str__()
+    response = (agent.run(prompt)).__str__()
+    response = response.replace('```json', '')
+    response = response.replace('```', '')
+    print('----------------')
+    print(query)
+    print(response)
+    print('----------------')
+    return response

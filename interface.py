@@ -15,7 +15,7 @@ def decode_response(response: str) -> dict:
     Returns:
         The decoded response as a dictionary.
     """
-    return json.loads(response)
+    return 
 
 
 def write_response(response_dict: dict):
@@ -33,7 +33,7 @@ def write_response(response_dict: dict):
     # Check if the response is a bar chart
 
     if "bar" in response_dict:
-        data = response_dict["bar"]
+        data = response_dict["bar"]        
         df = pd.DataFrame(data)
         df.set_index("columns", inplace = True)
         st.bar_chart(df)
@@ -54,24 +54,20 @@ def write_response(response_dict: dict):
 
 
 ## Interface Code
-
-st.title("📊 ChatCSV - Find Insights From Your CSV")
-st.write("ChatCSV is a tool that allows you to query a large language model (LLM) to find insights from your CSV file. It is powered by the OpenAI API.")
-
-data = st.file_uploader("Upload a CSV file", type=["csv"])
-
-query = st.text_input("Ask a question")
+#data = st.file_uploader("Upload a CSV file", type=["csv"])
+st.title("Just ask...")
+query = st.text_input(" ")
+df = pd.read_csv('Sales_example.csv')
 
 if st.button("Submit", type = "primary"):
-    #Creating an agent
-    agent = create_agent(data)
+    with st.spinner('Generating response...'):
+        
+        agent = create_agent(df)
+        response = query_agent(agent = agent, query = query)
+        decoded_response = json.loads(response)
+        st.markdown("""---""")
+        st.success('Answer:')
+        write_response(decoded_response)
 
-    #Querying the agent
-    response = query_agent(agent = agent, query = query)
-
-    # Decode the response
-
-    decoded_response = decode_response(response)
-
-    # Write the response
-    write_response(decoded_response)
+st.markdown("""---""")
+st.table(df)
